@@ -1,0 +1,126 @@
+.bar {
+  display: flex;
+  position: fixed;
+  z-index: 2;
+  flex-direction: column;
+  height: fit-content;
+  height: 35rem;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  top: 4rem;
+  left: 1rem;
+  /* width: 6rem; */
+  border-radius: 8px;
+  background-color: #171717;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  animation: boxIn 0.5s forwards 1.3s;
+}
+.bar img {
+  position: absolute;
+  height: 4rem;
+  top: 1rem;
+}
+/* @keyframes moveLogo {
+  from {
+    opacity: 0;
+    transform: translate(35vw, 30vh);
+  }
+  40% {
+    transform: translate(35vw, 30vh);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+} */
+.bar button {
+  all: unset;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 3rem;
+  width: 11rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  /* left: -10rem; */
+  /* border: 1px solid transparent; */
+  border-radius: 8px;
+  transition: 0.2s;
+  /* opacity: 0; */
+  /* animation: boxIn 0.5s forwards 1.3s; */
+}
+
+@keyframes barIn {
+  to {
+    transform: translateX(10rem);
+  }
+}
+.bar button .icon {
+  position: relative;
+  font-size: 1.3rem;
+  transition: 0.3s;
+  left: 0.5rem;
+  opacity: 0.5;
+  transition: 0.2s;
+}
+.bar button:hover {
+  /* width: 8rem; */
+  background: rgba(94, 94, 94, 0.1);
+}
+.bar button:hover .icon {
+  opacity: 1 !important;
+}
+.bar button span {
+  /* position: absolute; */
+  position: relative;
+  /* opacity: 0; */
+  width: 60%;
+  text-align: start;
+  transition: 0.2s;
+}
+.bar button:hover span {
+}
+@media (max-width: 1400px) {
+  .bar {
+    top: 0;
+    left: 50%;
+    border-radius: 0;
+    height: fit-content;
+    /* flex-wrap: wrap; */
+    transform: translate(-50%, 0);
+    flex-direction: row;
+    width: 100%;
+  }
+  .bar img {
+    /* all: unset; */
+    height: 3.5rem;
+    display: block;
+    padding: 0.5rem;
+    position: relative;
+    top: 0;
+  }
+  .bar button {
+    width: 20%;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .bar button span {
+    display: none;
+  }
+  .bar button .icon {
+    left: 0;
+  }
+}
+
+/* .bar button:first-child:hover .icon {
+  color: #069d86;
+} */
+/*
+
+.bar button:nth-child(2) .icon {
+  color: #e84545;
+} */

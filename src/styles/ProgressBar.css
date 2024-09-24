@@ -1,0 +1,14 @@
+.outer-bar {
+  width: 100%;
+  height: 0.7rem;
+  position: relative;
+  margin: auto;
+  border-radius: 16px;
+  background-color: rgb(43, 43, 43);
+}
+.inner-bar {
+  height: inherit;
+  border-radius: inherit;
+
+  transition: 0.5s;
+}

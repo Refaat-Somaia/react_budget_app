@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
+import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+
 import { v4 as uuidV4 } from "uuid";
 import useLocalStorage from "../hooks/LocalStorageHook";
-
+import { db } from "../firebase.js";
 const BudgetContext = React.createContext();
 export function useBudgets() {
   return useContext(BudgetContext);
@@ -33,10 +35,9 @@ export const BudgetsProvider = ({ children }) => {
       day: new Date().getDay() == 0 ? 6 : new Date().getDay() - 1,
     };
 
-    // Update both expenses and expensesStorage
     setExpenses((prevExpenses) => {
       const updatedExpenses = [...prevExpenses, newExpense];
-      setExpensesStorage(updatedExpenses); // Update expensesStorage with the latest expenses
+      setExpensesStorage(updatedExpenses);
       return updatedExpenses;
     });
   }
@@ -56,7 +57,7 @@ export const BudgetsProvider = ({ children }) => {
       const updatedExpenses = prevExpenses.filter(
         (expense) => expense.id !== id
       );
-      setExpensesStorage(updatedExpenses); // Update expensesStorage with the latest expenses
+      setExpensesStorage(updatedExpenses);
       return updatedExpenses;
     });
   }
@@ -97,7 +98,6 @@ export const BudgetsProvider = ({ children }) => {
     });
   }
 
-  // Other utility functions...
   function swapPage(index) {
     page === 1 ? setPage(0) : setPage(1);
   }
@@ -137,6 +137,30 @@ export const BudgetsProvider = ({ children }) => {
     if (str.length <= 3) return str;
   }
 
+  async function uploadDataToFirestore() {
+    if (budgets.length > 0) {
+      try {
+        for (const budget of budgets) {
+          await setDoc(doc(db, "budgets", budget.id), budget);
+        }
+
+        for (const expense of expenses) {
+          await addDoc(collection(db, "expenses"), expense);
+        }
+
+        alert("Budgets and expenses successfully uploaded to Firestore!");
+        return true;
+      } catch (error) {
+        console.error("Error uploading data to Firestore:", error);
+        alert("Failed to upload data. Please try again. " + error.message);
+        return false;
+      }
+    } else {
+      alert("You have no budgets to upload");
+      return false;
+    }
+  }
+
   return (
     <BudgetContext.Provider
       value={{
@@ -146,6 +170,7 @@ export const BudgetsProvider = ({ children }) => {
         page,
         saveAndReset,
         formatAmount,
+        uploadDataToFirestore,
         weekNumber,
         swapPage,
         getExpensesOfWeek,

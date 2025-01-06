@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   overflow-x: hidden;
   transition: 0.3s;
+  font-family: just sans;
   /* color: #ecebeb;
   background: linear-gradient(
     90deg,
@@ -73,6 +74,7 @@ h1 {
   flex-grow: 1;
   left: 12.5%;
   opacity: 1;
+  margin-bottom: 3rem;
   text-align: center;
   /* animation: boxIn 0.5s forwards 1.3s; */
 }
@@ -125,6 +127,7 @@ h1 {
   height: fit-content;
   padding: 0 1rem;
   margin: 1rem;
+  min-height: 14rem;
   justify-content: center;
   align-items: center;
   border-radius: 16px;
@@ -141,6 +144,7 @@ h1 {
 }
 .card .col p {
   opacity: 0.8;
+  font-size: 0.9rem;
 }
 .container-month {
   border-radius: 32px;
